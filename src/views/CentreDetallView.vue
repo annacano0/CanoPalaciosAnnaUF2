@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useFetch } from '@/composables/useFetch'
+import { watchEffect } from 'vue'
 
 const { anyDetall, detallCentre } = defineProps({
   anyDetall: String,
@@ -23,9 +24,14 @@ const getPercentages = (val1, val2) => {
   return [res1.toFixed(2), res2.toFixed(2)]
 }
 
-const pergentagesBeques = getPercentages(data.value[0].formaci_dones, data.value[0].formaci_homes)
+let pergentagesBeques = getPercentages(data.value[0].formaci_dones, data.value[0].formaci_homes)
+let pergentagesMov = getPercentages(data.value[0].mobilitat_dones, data.value[0].mobilitat_homes)
 
-const pergentagesMov = getPercentages(data.value[0].mobilitat_dones, data.value[0].mobilitat_homes)
+watchEffect(() => {
+  getData()
+  pergentagesBeques = getPercentages(data.value[0].formaci_dones, data.value[0].formaci_homes)
+  pergentagesMov = getPercentages(data.value[0].mobilitat_dones, data.value[0].mobilitat_homes)
+})
 </script>
 <template>
   <h2>Informe</h2>
