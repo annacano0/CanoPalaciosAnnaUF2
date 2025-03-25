@@ -34,7 +34,8 @@ watchEffect(() => {
 })
 </script>
 <template>
-  <h2>Informe</h2>
+  <h2>Informe sobre Beques i Mobilitat a {{ detallCentre }}</h2>
+  <p>Any: {{ anyDetall }}</p>
   <button @click="goBack">Enrere</button>
   <ul v-if="data">
     <li><span>Beques Dones: </span>{{ data[0].formaci_dones }} ({{ pergentagesBeques[0] }}%)</li>
