@@ -1,23 +1,23 @@
-import { ref } from "vue";
-import axios from "axios";
+import { ref } from 'vue'
+import axios from 'axios'
 
-const data = ref([]);
-const error = ref(null);
-const url =
-  "https://analisi.transparenciacatalunya.cat/resource/rsgi-8ymj.json";
+const data = ref([])
+const error = ref(null)
+const url = 'https://analisi.transparenciacatalunya.cat/resource/rsgi-8ymj.json'
 
-export function useFetch() {
-
+export function useFetch(filter) {
   const getData = async () => {
     try {
-      const res = await axios.get(url);
-      if (res.status !== 200) throw new Error(`Could not fetch data`);
-      const resData = res.data;
-      data.value = resData;
+      let res
+      if (!filter) res = await axios.get(url)
+      else res = await axios.get(url + filter)
+      if (res.status !== 200) throw new Error(`Could not fetch data`)
+      const resData = res.data
+      data.value = resData
     } catch (err) {
-      error.value = err.message;
+      error.value = err.message
     }
-  };
+  }
 
-  return { data, error, getData };
+  return { data, error, getData }
 }
