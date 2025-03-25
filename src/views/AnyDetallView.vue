@@ -21,7 +21,7 @@ getData()
         <router-link
         :to="{
         
-          name: 'anyDetall',
+          name: 'centreDetall',
           params: { anyDetall: i.any, detallCentre:'Empreses' },
         }"
       >

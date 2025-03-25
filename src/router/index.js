@@ -36,6 +36,7 @@ const router = createRouter({
 
       component: () => import('../views/CentreDetallView.vue'),
       props: (route) => ({
+        ...route.params,
         anyDetall: route.params.anyDetall,
         detallCentre: route.params.detallCentre,
       }),
